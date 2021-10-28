@@ -5,6 +5,7 @@ import styled from 'styled-components'
 export const TodoList = () => {
 
 const [todos, setTodos] = useState([])
+const [searchName, setSearchName] = useState('')
 
 useEffect(() => {
   axios.get('/api/v1/todos.json')
@@ -21,11 +22,17 @@ useEffect(() => {
     <>
       <h1>ToDo Lists</h1>
       <InputAndRemoveAll>
-        <Input />
+        <Input type="text" placeholder="SearchTodo..." onChange={e =>{setSearchName(e.target.value)}} />
         <RemoveAllBtn>RemoveAll</RemoveAllBtn>
       </InputAndRemoveAll>
       <div>
-        {todos.map((val, key) =>{
+        {todos.filter((val) => {
+          if (searchName === ""){
+            return val
+          }else if(val.name.toLowerCase().includes(searchName.toLowerCase())){
+            return val
+          }
+        }).map((val, key) =>{
           return(
             <TodoContent key={key}>
               <TodoName>{val.name}</TodoName>
