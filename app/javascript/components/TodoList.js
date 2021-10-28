@@ -18,12 +18,25 @@ useEffect(() => {
   // })
 }, [])
 
+const onClickDeleteAll = () => {
+  const alert = window.confirm('Do you really want to delete all TodoLists?')
+  if(alert){
+    axios.delete('/api/v1/todos/destroy_all')
+    .then(resp => {
+      setTodos([])
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+}
+
   return (
     <>
       <h1>ToDo Lists</h1>
       <InputAndRemoveAll>
         <Input type="text" placeholder="SearchTodo..." onChange={e =>{setSearchName(e.target.value)}} />
-        <RemoveAllBtn>RemoveAll</RemoveAllBtn>
+        <RemoveAllBtn onClick={onClickDeleteAll}>RemoveAll</RemoveAllBtn>
       </InputAndRemoveAll>
       <div>
         {todos.filter((val) => {
