@@ -1,7 +1,22 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 export const TodoList = () => {
+
+const [todos, setTodos] = useState([])
+
+useEffect(() => {
+  axios.get('/api/v1/todos.json')
+  .then(resp => {
+    //console.log(resp.data)
+    setTodos(resp.data);
+  })
+  // .catch(e => {
+  //   console.log(e);
+  // })
+}, [])
+
   return (
     <>
       <h1>ToDo Lists</h1>
@@ -10,7 +25,13 @@ export const TodoList = () => {
         <RemoveAllBtn>RemoveAll</RemoveAllBtn>
       </InputAndRemoveAll>
       <div>
-        
+        {todos.map((val, key) =>{
+          return(
+            <div key={key}>
+              {val.name}
+            </div>
+          )
+        })}
       </div>
     </>
   )
