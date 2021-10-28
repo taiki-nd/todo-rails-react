@@ -20,6 +20,13 @@ export const App = () => {
           </Link>
         </Actions>
       </Navbar>
+      <Wrapper>
+        <Switch>
+          <Route exact path="/todos" component={TodoList} />
+          <Route exact path="/todos/new" component={AddTodo} />
+          <Route path="/todos/:id/edit" component={EditTodo} />
+        </Switch>
+      </Wrapper>
     </>
   )
 }
