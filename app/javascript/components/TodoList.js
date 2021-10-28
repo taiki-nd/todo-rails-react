@@ -31,6 +31,20 @@ export const TodoList = () => {
     }
   }
 
+  const onClickComplete = (index, val) => {
+    const val2 = {
+      id: val.id,
+      name : val.name,
+      is_completed: !val.is_completed
+    }
+    axios.patch(`/api/v1/todos/${val.id}`, val2)
+    .then(resp => {
+      const newTodos = [...todos]
+      newTodos[index].is_completed = resp.data.is_completed
+      setTodos(newTodos)
+    })
+  }
+
   return (
     <>
       <h1>ToDo Lists</h1>
@@ -48,9 +62,13 @@ export const TodoList = () => {
         }).map((val, key) =>{
           return(
             <TodoContent key={key}>
-              <TodoName>{val.name}</TodoName>
+              <TodoName is_completed={val.is_completed}>{val.name}</TodoName>
               <Btns>
-                <CompleteBtn onClick={onClickComplete}>完了</CompleteBtn>
+                {val.is_completed ? (
+                  <CompleteBtn onClick={() => onClickComplete(key,val)}>未完了</CompleteBtn>
+                ):(
+                  <CompleteBtn onClick={() => onClickComplete(key,val)}>完了</CompleteBtn>
+                )}
                 <EditBtn>編集</EditBtn>
               </Btns>
             </TodoContent>
@@ -99,8 +117,11 @@ const TodoContent = styled.div`
   box-shadow: 2px 2px 2px #ccffcc;
 `
 
-const TodoName = styled.div`
+const TodoName = styled.span`
   font-size: 24px;
+  ${({ is_completed }) => is_completed && `
+    opacity: 0.4;
+  `}
 `
 
 const Btns = styled.div`
