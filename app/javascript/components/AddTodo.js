@@ -1,12 +1,34 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { TodoList } from './TodoList'
 
 export const AddTodo = () => {
+
+  const initialTodoStatus = {
+    id: null,
+    name: "",
+    is_completed: false
+  }
+
+  const [todo, setTodo] = useState(initialTodoStatus)
+
+  const InputNewTodo = (e) => {
+    const { name, value } = e.target;
+    setTodo({ ...todo,[name]: value });
+  }
+
   return (
     <>
       <h1>NewTodo</h1>
       <InputAndNew>
-        <Input type="text" placeholder="NewTodo..." />
+        <Input 
+          type="text" 
+          placeholder="NewTodo..." 
+          required
+          value={todo.name}
+          onChange={InputNewTodo}
+          name="name" />
         <NewBtn >AddNewTodo</NewBtn>
       </InputAndNew>
     </>
