@@ -37,6 +37,7 @@ useEffect(() => {
           )
         })}
       </div>
+      <h1>Completed ToDo Lists</h1>
     </>
   )
 }
