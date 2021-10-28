@@ -4,32 +4,32 @@ import styled from 'styled-components'
 
 export const TodoList = () => {
 
-const [todos, setTodos] = useState([])
-const [searchName, setSearchName] = useState('')
+  const [todos, setTodos] = useState([])
+  const [searchName, setSearchName] = useState('')
 
-useEffect(() => {
-  axios.get('/api/v1/todos.json')
-  .then(resp => {
-    //console.log(resp.data)
-    setTodos(resp.data);
-  })
-  // .catch(e => {
-  //   console.log(e);
-  // })
-}, [])
-
-const onClickDeleteAll = () => {
-  const alert = window.confirm('Do you really want to delete all TodoLists?')
-  if(alert){
-    axios.delete('/api/v1/todos/destroy_all')
+  useEffect(() => {
+    axios.get('/api/v1/todos.json')
     .then(resp => {
-      setTodos([])
+      //console.log(resp.data)
+      setTodos(resp.data);
     })
-    .catch(e => {
-      console.log(e)
-    })
+    // .catch(e => {
+    //   console.log(e);
+    // })
+  }, [])
+
+  const onClickDeleteAll = () => {
+    const alert = window.confirm('Do you really want to delete all TodoLists?')
+    if(alert){
+      axios.delete('/api/v1/todos/destroy_all')
+      .then(resp => {
+        setTodos([])
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
   }
-}
 
   return (
     <>
@@ -50,7 +50,7 @@ const onClickDeleteAll = () => {
             <TodoContent key={key}>
               <TodoName>{val.name}</TodoName>
               <Btns>
-                <CompleteBtn>完了</CompleteBtn>
+                <CompleteBtn onClick={onClickComplete}>完了</CompleteBtn>
                 <EditBtn>編集</EditBtn>
               </Btns>
             </TodoContent>
