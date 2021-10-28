@@ -27,9 +27,13 @@ useEffect(() => {
       <div>
         {todos.map((val, key) =>{
           return(
-            <div key={key}>
-              {val.name}
-            </div>
+            <TodoContent key={key}>
+              <TodoName>{val.name}</TodoName>
+              <Btns>
+                <CompleteBtn>完了</CompleteBtn>
+                <EditBtn>編集</EditBtn>
+              </Btns>
+            </TodoContent>
           )
         })}
       </div>
@@ -62,4 +66,42 @@ const RemoveAllBtn = styled.button`
   border-radius: 3px;
   color: #fff;
   cursor: pointer;
+`
+const TodoContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding 10px;
+  border: solid 1px #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px #ccffcc;
+`
+
+const TodoName = styled.div`
+  font-size: 24px;
+`
+
+const Btns = styled.div`
+justify-content: space-around;
+`
+
+const CompleteBtn = styled.button`
+  width: fit-content;
+  font-size: 20px;
+  padding: 0 5px;
+  margin: 0 5px;
+  &:hover{
+    background-color: #ccffcc;
+  }
+`
+
+const EditBtn = styled.button`
+  width: fit-content;
+  font-size: 20px;
+  padding: 0 5px;
+  margin: 0 5px;
+  &:hover{
+    background-color: #ccffcc;
+  }
 `
