@@ -2,8 +2,10 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { TodoList } from './TodoList'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-export const AddTodo = () => {
+export const AddTodo = (props) => {
 
   const initialTodoStatus = {
     id: null,
@@ -13,9 +15,35 @@ export const AddTodo = () => {
 
   const [todo, setTodo] = useState(initialTodoStatus)
 
+  const notify = () => {
+    toast.success("Todo successfully created!", {
+      position: "bottom-center",
+      hideProgressBar: true
+    });
+  }
+
   const InputNewTodo = (e) => {
     const { name, value } = e.target;
     setTodo({ ...todo,[name]: value });
+  }
+
+  const onClickSaveTodo = () => {
+    const newVal = {
+      name: todo.name,
+    };
+    axios.post('/api/v1/todos', newVal)
+    .then(resp => {
+      setTodo({
+        id: resp.data.id,
+        name: resp.data.name,
+        is_completed: resp.data.is_completed
+      });
+      notify();
+      props.history.push("/todos");
+    })
+    .catch(e => {
+      console.log(e)
+    })
   }
 
   return (
@@ -29,7 +57,11 @@ export const AddTodo = () => {
           value={todo.name}
           onChange={InputNewTodo}
           name="name" />
-        <NewBtn >AddNewTodo</NewBtn>
+        <NewBtn 
+          onClick={onClickSaveTodo} 
+          disabled={(!todo.name || /^\s*$/.test(todo.name))} 
+          >AddNewTodo
+        </NewBtn>
       </InputAndNew>
     </>
   )
