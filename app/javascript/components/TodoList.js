@@ -48,6 +48,11 @@ export const TodoList = () => {
 
   return (
     <>
+      <h1>Caution!</h1>
+      <Caution>
+        <li>レスポンシブ対応をしていないためstyle崩れを起こす可能性があります</li>
+        <li>リセットcssが甘いためstyle崩れを起こす可能性があります</li>
+      </Caution>
       <h1>ToDo Lists</h1>
       <InputAndRemoveAll>
         <Input type="text" placeholder="SearchTodo..." onChange={e =>{setSearchName(e.target.value)}} />
@@ -79,6 +84,10 @@ export const TodoList = () => {
     </>
   )
 }
+
+const Caution = styled.ul`
+  text-align: center;
+`
 
 const InputAndRemoveAll = styled.div`
   display: flex;
