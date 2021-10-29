@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { AddTodo } from './AddTodo'
 import { EditTodo } from './EditTodo'
 import { TodoList } from './TodoList'
-import './App.css'
 import { Switch, Route, Link } from 'react-router-dom'
 
 export const App = () => {
