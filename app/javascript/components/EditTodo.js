@@ -32,6 +32,16 @@ export const EditTodo = (props) => {
     setCurrentTodo({...currentTodo, [name]: value});
   }
 
+  const onClickEditBtn = () => {
+    axios.patch(`/api/v1/todos/${currentTodo.id}`, currentTodo)
+    .then(resp => {
+      props.history.push("/todos");
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+
   return (
     <>
       <h1>EditTodo</h1>
@@ -43,7 +53,7 @@ export const EditTodo = (props) => {
           name="name"
           value={currentTodo.name}
           onChange={onChangeEditTodo} />
-        <EditBtn>UpdateTodo</EditBtn>
+        <EditBtn onClick={onClickEditBtn} >EditAndUpdate</EditBtn>
       </EditInputAndBtn>
       <h2>CurrentStatus</h2>
       <div>
