@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const TodoList = () => {
 
@@ -69,7 +70,7 @@ export const TodoList = () => {
                 ):(
                   <CompleteBtn onClick={() => onClickComplete(key,val)}>完了</CompleteBtn>
                 )}
-                <EditBtn>編集</EditBtn>
+                <Link to={`/todos/${val.id}/edit`}><EditBtn>編集</EditBtn></Link>
               </Btns>
             </TodoContent>
           )
