@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { TodoList } from './TodoList'
 import { toast } from 'react-toastify'
-import 'react-toastify/scss/main.scss'
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 toast.configure();
 
