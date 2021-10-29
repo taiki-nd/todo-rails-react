@@ -56,9 +56,9 @@ export const EditTodo = (props) => {
         <EditBtn onClick={onClickEditBtn} >EditAndUpdate</EditBtn>
       </EditInputAndBtn>
       <h2>CurrentStatus</h2>
-      <div>
-        Complete Incomplete
-      </div>
+      <Status>
+        {currentTodo.is_completed ? "Complete" : "Incomplete" }
+      </Status>
       <h2>EditStatus</h2>
       <div>
         <CompleteBtn>完了</CompleteBtn>
@@ -93,6 +93,13 @@ const EditBtn = styled.button`
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
+`
+
+const Status = styled.div`
+  width: fit-content;
+  border: solid 1px #000;
+  border-radius: 8px;
+  padding: 0 5px;
 `
 
 const CompleteBtn = styled.button`
