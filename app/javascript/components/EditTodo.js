@@ -1,14 +1,42 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-export const EditTodo = () => {
+export const EditTodo = (props) => {
+
+  const initialTodoStatus = {
+    id: null,
+    name: "",
+    is_completed: false
+  };
+
+  const [currentTodo, setCurrentTodo] = useState(initialTodoStatus)
+
+  const getTodo = id => {
+    axios.get(`/api/v1/todos/${id}`)
+    .then(resp => {
+      setCurrentTodo(resp.data);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
+  useEffect(() => {
+    getTodo(props.match.params.id)
+    //console.log(props.match.params.id)
+  }, [props.match.params.id]);
+
   return (
     <>
       <h1>EditTodo</h1>
       <h2>CurrentTodo</h2>
       <EditInputAndBtn>
         <EditInput 
-          type="text"/>
+          type="text"
+          id="name"
+          name="name"
+          value={currentTodo.name} />
         <EditBtn>UpdateTodo</EditBtn>
       </EditInputAndBtn>
       <h2>CurrentStatus</h2>
