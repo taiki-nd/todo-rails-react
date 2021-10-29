@@ -54,6 +54,20 @@ export const EditTodo = (props) => {
     })
   };
 
+  const onClickDeleteBtn = () => {
+    const alert = window.confirm('Do you really want to delete this TodoList?')
+    if (alert) {
+      axios.delete(`/api/v1/todos/${currentTodo.id}`)
+      .then(resp => {
+        //console.log(resp.data)
+        props.history.push("/todos");
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
+  }
+
   return (
     <>
       <h1>EditTodo</h1>
@@ -78,7 +92,7 @@ export const EditTodo = (props) => {
         ) : (
           <CompleteBtn onClick={() => onClickCompleteBtn(currentTodo)}>完了</CompleteBtn>
         )}
-        <DeleteBtn>削除</DeleteBtn>
+        <DeleteBtn onClick={onClickDeleteBtn}>削除</DeleteBtn>
       </div>
     </>
   )
