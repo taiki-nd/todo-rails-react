@@ -15,6 +15,11 @@ h1 {
   margin-bottom: 15px;
 }
 
+h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
 a {
   text-decoration: none;
   color: rgb(1, 1, 1);
