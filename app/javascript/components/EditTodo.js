@@ -42,6 +42,18 @@ export const EditTodo = (props) => {
     })
   }
 
+  const onClickCompleteBtn = (val) => {
+    var updateVal = {
+      id: val.id,
+      name: val.name,
+      is_completed: !val.is_completed
+    };
+    axios.patch(`/api/v1/todos/${val.id}`, updateVal)
+    .then(resp => {
+      setCurrentTodo(resp.data);
+    })
+  };
+
   return (
     <>
       <h1>EditTodo</h1>
@@ -61,8 +73,11 @@ export const EditTodo = (props) => {
       </Status>
       <h2>EditStatus</h2>
       <div>
-        <CompleteBtn>完了</CompleteBtn>
-        <IncompleteBtn>未完了</IncompleteBtn>
+        {currentTodo.is_completed ? (
+          <IncompleteBtn onClick={() => onClickCompleteBtn(currentTodo)}>未完了</IncompleteBtn>
+        ) : (
+          <CompleteBtn onClick={() => onClickCompleteBtn(currentTodo)}>完了</CompleteBtn>
+        )}
         <DeleteBtn>削除</DeleteBtn>
       </div>
     </>
