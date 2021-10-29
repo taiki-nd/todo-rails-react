@@ -27,6 +27,11 @@ export const EditTodo = (props) => {
     //console.log(props.match.params.id)
   }, [props.match.params.id]);
 
+  const onChangeEditTodo = (e) => {
+    const { name, value } = e.target;
+    setCurrentTodo({...currentTodo, [name]: value});
+  }
+
   return (
     <>
       <h1>EditTodo</h1>
@@ -36,7 +41,8 @@ export const EditTodo = (props) => {
           type="text"
           id="name"
           name="name"
-          value={currentTodo.name} />
+          value={currentTodo.name}
+          onChange={onChangeEditTodo} />
         <EditBtn>UpdateTodo</EditBtn>
       </EditInputAndBtn>
       <h2>CurrentStatus</h2>
