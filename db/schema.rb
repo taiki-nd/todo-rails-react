@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_10_28_072839) do
 
-  create_table "todos", force: :cascade do |t|
+  create_table "todos", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "is_completed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
