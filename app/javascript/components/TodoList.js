@@ -48,7 +48,7 @@ export const TodoList = () => {
 
   return (
     <>
-      <h1>ToDo Lists</h1>
+      <h1>ToDoLists</h1>
       <InputAndRemoveAll>
         <Input type="text" placeholder="SearchTodo..." onChange={e =>{setSearchName(e.target.value)}} />
         <RemoveAllBtn onClick={onClickDeleteAll}>RemoveAll</RemoveAllBtn>
