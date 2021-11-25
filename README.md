@@ -1,24 +1,8 @@
-# todo-app
+# todo-app-rails-react
 
 ## アプリ概要
-バックエンドにRails（API）、フロントエンドにReactを採用したtodoアプリ
-
-## URL
-* デプロイ先
-https://todo-app-rails-react.herokuapp.com/todoes
-
-* Qiitaにてアプリの作成方法をアウトプットしています。
-part1
-https://qiita.com/taiki-nd/items/aa9d0a03d1950876efab
-part2
-https://qiita.com/taiki-nd/items/41230829bcedd73bdec4
-part3
-https://qiita.com/taiki-nd/items/14ff0faf685905532e0f
-part4
-https://qiita.com/taiki-nd/items/ccd07c79a2eca0dba716
-part5
-https://qiita.com/taiki-nd/items/b7b9a6a24f0c99458b2a
-
+* バックエンドにRails（API）、フロントエンドにReactを採用したtodoアプリ
+* 勉強のために作成
 ## 使い方
 1. 右上"New TODO"ボタンからNEWTODOページに移動
 [![Image from Gyazo](https://i.gyazo.com/6ede76603feca4e6778b6f6ed7480c9f.png)](https://gyazo.com/6ede76603feca4e6778b6f6ed7480c9f)
